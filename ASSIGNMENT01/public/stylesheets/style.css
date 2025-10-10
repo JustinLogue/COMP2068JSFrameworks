@@ -19,6 +19,32 @@ body {
   background-color: #cfd6dc;
   border-radius: 30px;
 }
+.displayArea{
+  display: flex;
+  justify-content: space-evenly;
+}
+.projectBox{
+  margin: 20px;
+  padding: 10px;
+  background-color: aquamarine;
+  border-radius: 30px;
+  width:320px;
+ 
+}
+.projectBox img{
+ height:300px;
+ width:300px;
+ inset-block: inline;
+}
+#input-name, #input-email{
+  margin-right: 20px;
+  margin-bottom: 20px;
+  width:200px;
+}
+#input-message{
+  width: 425px;
+  margin-bottom:20px;
+}
 
 
 a {
