@@ -2,9 +2,24 @@ body {
 
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-.inner{
-    padding: 50px;
+
+.imgFix{
+  display: flex;
+  justify-content: space-between; 
+    align-items: center;
+  
 }
+.headerFix{
+  display: flex;
+  flex-direction: column;  
+}
+.indexContent{
+  padding: 25px;
+  margin: 25px;
+  background-color: #cfd6dc;
+  border-radius: 30px;
+}
+
 
 a {
   color: #00B7FF;
