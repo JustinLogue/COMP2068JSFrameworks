@@ -4,8 +4,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var projectsRouter =require('./routes/projects');
+
+const mongoose = require('mongoose');
+const configs = require('./configs/globals');
+
 
 var app = express();
 
@@ -18,9 +25,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+mongoose
+  .connect(configs.ConnectionStrings.MongoDB)
+  .then(()=> {
+    console.log("Connected to MongoDB... :)")
+  })
+  .catch((err) => {
+    console.error("Could not connect to MongoDB", err)
+  });
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/projects', projectsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
