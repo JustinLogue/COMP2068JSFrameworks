@@ -1,0 +1,24 @@
+<h1>{{title}}</h1>
+<form method="POST">
+    <fieldset>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" value="{{project.name}}" required>
+    </fieldset>
+    <fieldset>
+        <label for="dueDate">Due Date</label>
+        <input type="date" name="dueDate" id="dueDate" value="{{project.dueDate}}" required>
+    </fieldset>
+    <fieldset>
+        <label for="course">Course</label>
+        <input type="text" name="course" id="course" value="{{project.course}}"  required>
+    </fieldset>
+    <fieldset>
+        <label for="status">Status</label>
+        <select name="Status" id="status">
+            <option value="TO DO">TO DO</option>
+            <option value="IN PROGRESS">IN PROGRESS</option>
+            <option value="DONE">DONE</option>
+        </select>
+    </fieldset>
+    <button class="offset-3 btn btn-primary">Save</button>
+</form>

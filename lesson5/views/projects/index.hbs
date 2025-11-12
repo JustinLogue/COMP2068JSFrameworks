@@ -7,15 +7,22 @@
             <th>Due Date</th>
             <th>Course</th>
             <th>Status</th>
+            <th>Update</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        {{#each projects}}
+        {{#each dataset}}
         <tr>
-            <th>{{this.name}}</th>
-            <th>{{this.dueDate}}</th>
-            <th>{{this.course}}</th>
-            <th>{{this.status}}</th>
+            <td>{{this.name}}</td>
+            <td>{{this.dueDate}}</td>
+            <td>{{this.course}}</td>
+            <td>{{this.status}}</td>
+            <td> 
+                <a href="/projects/edit/{{this._id}}" class="btn btn-info">Update</a>
+                &nbsp;
+                <a href="/projects/delete/{{this._id}}" class="btn btn-danger" onclick="confirmDeletion()">Delete</a>
+            </td>
         </tr>
         {{/each}}
     </tbody>
