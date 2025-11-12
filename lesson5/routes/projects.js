@@ -32,10 +32,10 @@ router.get('/edit/:_id', async (req,res,next) =>{
     res.render("projects/edit", {title: "Edit Project", project: projectData})
 });
 
-router.post("/edit/:_id",async (req, res, next) =>{
+router.post("/edit/:_id", async (req, res, next) =>{
     let projectId =req.params._id;
     await Project.findByIdAndUpdate(
-        {_id: projectID},
+        {_id: projectId},
         {
             name: req.body.name,
             dueDate: req.body.dueDate,

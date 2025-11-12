@@ -10,6 +10,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var projectsRouter =require('./routes/projects');
 
+var hbs =require('hbs');
+
 const mongoose = require('mongoose');
 const configs = require('./configs/globals');
 
@@ -33,9 +35,23 @@ mongoose
   .catch((err) => {
     console.error("Could not connect to MongoDB", err)
   });
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/projects', projectsRouter);
+
+hbs.registerHelper("toShortDate", (longDateValue) => {
+  return new hbs.SafeString(longDateValue.toLocaleDateString("en-CA"));
+})
+
+hbs.registerHelper("createOptionElement", (currentValue, selectedValue)=> {
+  if(currentValue === selectedValue){
+    return new hbs.SafeString("<option selected>" + currentValue + "</option>");
+  }
+  else{
+    return new hbs.SafeString("<option>" + currentValue + "</option>");
+  }
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
