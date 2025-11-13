@@ -9,11 +9,16 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var projectsRouter =require('./routes/projects');
+var coursesRouter = require("./routes/courses");
 
 var hbs =require('hbs');
 
 const mongoose = require('mongoose');
 const configs = require('./configs/globals');
+
+var passport = require("passport");
+var session = require("express-session");
+var User = require("./models/user");
 
 
 var app = express();
@@ -27,6 +32,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+  secret: "ProjectTracker2025",
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
 mongoose
   .connect(configs.ConnectionStrings.MongoDB)
   .then(()=> {
@@ -39,6 +57,7 @@ mongoose
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/projects', projectsRouter);
+app.use('/courses', coursesRouter);
 
 hbs.registerHelper("toShortDate", (longDateValue) => {
   return new hbs.SafeString(longDateValue.toLocaleDateString("en-CA"));
