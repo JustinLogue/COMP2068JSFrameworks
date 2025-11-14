@@ -5,7 +5,7 @@ var User = require("../models/user");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Express', user: req.user });
 });
 
 router.get('/login', function(req,res,next){
@@ -51,5 +51,21 @@ router.post("/register", (req, res, next) => {
     }
   );
 });
+
+router.get("/logout", function (req, res, next){
+  req.logout((error)=> {
+    res.redirect("/login");
+  })
+});
+
+router.get('/github', passport.authenticate("github", {scope: ["user.email"]}));
+
+router.get("/github/callback", passport.authenticate('github',{
+      successRedirect: "/projects",
+    failureRedirect: "/login",
+    failureMessage: "Github Authentication failed"
+}
+
+))
 
 module.exports = router;
