@@ -3,12 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var mongoose = require('mongoose');
-const configs = require('./configs/globals');
 
 var indexRouter = require('./routes/index');
-var projectsRouter =require('./routes/projects');
-//var usersRouter = require("./routes/users");
+var usersRouter = require('./routes/users');
+var projectsRouter =require('./routes/projects')
+
+var mongoose= require('mongoose');
+var configs = require("./configs/globals")
 
 var app = express();
 
@@ -23,7 +24,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-//app.use("/users", usersRouter);
+app.use('/users', usersRouter);
+app.use("api/projects", projectsRouter);
+
+mongoose
+  .connect(configs.ConnectionStrings.MongoDB)
+  .then(() => console.log("Connected to mongoDB"))
+  .catch((err) => console.error("could not connect to mongodb", err))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -40,16 +47,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-mongoose
-  .connect(configs.ConnectionStrings.MongoDB)
-  .then(()=> {
-    console.log("Connected to MongoDB... :)")
-  })
-  .catch((err) => {
-    console.error("Could not connect to MongoDB", err)
-  });
-
-app.use('/projects', projectsRouter);
 
 module.exports = app;
