@@ -3,12 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
-import { Project } from './project/project';
+import { ProjectComponent } from './project/project.component';
 
 @NgModule({
   declarations: [
-    App,
-    Project
+    ProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -17,6 +16,6 @@ import { Project } from './project/project';
   providers: [
     provideBrowserGlobalErrorListeners()
   ],
-  bootstrap: [App]
+  bootstrap: [ProjectComponent]
 })
 export class AppModule { }
