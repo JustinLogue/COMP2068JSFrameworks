@@ -10,6 +10,12 @@ var projectsRouter =require('./routes/projects')
 
 var mongoose= require('mongoose');
 var configs = require("./configs/globals")
+var cors = require('cors'); 
+
+var corsOptions = {
+  origin: 'http://localhost:4200', 
+  optionsSuccessStatus: 200 
+};
 
 var app = express();
 
@@ -23,9 +29,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(cors(corsOptions));
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use("/api/projects", projectsRouter);
+
+
 
 mongoose
   .connect(configs.ConnectionStrings.MongoDB)
