@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { ProjectComponent } from './project/project.component';
+import{HttpClientModule} from '@angular/common/http';
+import {ProjectService} from './services/project.service';
 
 @NgModule({
   declarations: [
@@ -11,9 +13,11 @@ import { ProjectComponent } from './project/project.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
+    ProjectService,
     provideBrowserGlobalErrorListeners()
   ],
   bootstrap: [ProjectComponent]
