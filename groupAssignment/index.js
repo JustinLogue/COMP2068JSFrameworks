@@ -2,8 +2,36 @@ require('dotenv').config();
 
 const{REST, Routes} = require('discord.js');
 const deployCommands = async () => {
+    try{
+        const commands =[];
+        const commandFiles =fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
-};
+        for (const file of commandFiles){
+            const command =require(`./commands/${file}`);
+            if('data' in command && 'execute' in command){
+                commands.push(command.data.toJSON());
+            } else {
+                console.log(`The command at ./commands/${file} is missing a required "data" or "execute" property.`);
+            }
+    }
+    
+    const rest = new REST().setToken(process.env.BOT_TOKEN);
+
+    console.log(`Started refreshing application ${commands.length} commands.`);
+
+    const data = await rest.put(
+        Routes.applicationCommands(process.env.CLIENT_ID),
+        {body: commands},
+    );
+    console.log(`Successfully reloaded ${data.length} application commands.`);
+    }catch (error){
+        console.error('Error deploying commands: ',error);
+    }
+
+    }
+
+
+
 
 const {Client,
     GatewayIntentBits,
