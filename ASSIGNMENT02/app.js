@@ -45,33 +45,32 @@ app.use(passport.session());
 passport.use(User.createStrategy());
 
 passport.use(new githubStrategy(
-  // options object
+
   {
     clientID: configs.Authentication.GitHub.ClientId,
     clientSecret: configs.Authentication.GitHub.ClientSecret,
     callbackURL: configs.Authentication.GitHub.CallbackURL
   },
-  // callback function
-  // profile is github profile
+
   async (accessToken, refreshToken, profile, done) => {
-    // search user by ID
+
     const user = await User.findOne({ oauthId: profile.id });
-    // user exists (returning user)
+
     if (user) {
-      // no need to do anything else
+
       return done(null, user);
     }
     else {
-      // new user so register them in the db
+
       const newUser = new User({
         username: profile.username,
         oauthId: profile.id,
         oauthProvider: 'Github',
         created: Date.now()
       });
-      // add to DB
+
       const savedUser = await newUser.save();
-      // return
+
       return done(null, savedUser);
     }
   }

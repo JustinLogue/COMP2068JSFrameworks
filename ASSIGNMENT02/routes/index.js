@@ -3,9 +3,9 @@ var router = express.Router();
 var passport = require("passport");
 var User = require("../models/user");
 
-/* GET home page. */
+
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express', user: req.user });
+  res.render('index', { title: '4 Corner Work Out', user: req.user });
 });
 
 router.get('/login', function(req,res,next){
@@ -30,8 +30,7 @@ router.get('/register', function(req,res,next){
 });
 
 router.post("/register", (req, res, next) => {
-  // Create a new user based on the information from the page
-  // three parameters: new user object, password, callback function
+
   User.register(
     new User({
       username: req.body.username,
@@ -40,10 +39,10 @@ router.post("/register", (req, res, next) => {
     (err, newUser) => {
       if (err) {
         console.log(err);
-        // take user back and reload register page
+
         return res.redirect("/register");
       } else {
-        // log user in and redirect
+
         req.login(newUser, (err) => {
           res.redirect("/projects");
         });
