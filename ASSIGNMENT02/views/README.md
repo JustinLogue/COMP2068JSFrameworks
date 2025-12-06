@@ -1,0 +1,2 @@
+A simple workout builder, use the Hinge, Squats, Pushing, Pulling Compound Movements idea, were you to a set from each for a complete workout.
+Used Colored Navbar from bootstrap 5: https://www.w3schools.com/bootstrap5/bootstrap_navbar.php Live Site:https://comp2068jsframeworks-drkg.onrender.com/
