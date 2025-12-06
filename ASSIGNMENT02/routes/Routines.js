@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-const Project = require("../models/project");
-const Course = require("../models/course");
 const Routine = require("../models/routine");
 
 const authenticateMiddleware = require("../extensions/authentication");
