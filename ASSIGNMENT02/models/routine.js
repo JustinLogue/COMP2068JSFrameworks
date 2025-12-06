@@ -23,4 +23,4 @@ const schemaObj = {
     
 };
 const mongooseSchema = new mongoose.Schema(schemaObj)
-module.exports =mongoose.model("Workout", mongooseSchema)
+module.exports =mongoose.model("Routine", mongooseSchema)
