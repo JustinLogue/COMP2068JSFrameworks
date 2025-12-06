@@ -44,7 +44,7 @@ router.post("/register", (req, res, next) => {
       } else {
 
         req.login(newUser, (err) => {
-          res.redirect("/projects");
+          res.redirect("/rountines");
         });
       }
     }
