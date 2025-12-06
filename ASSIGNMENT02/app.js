@@ -11,6 +11,7 @@ var usersRouter = require('./routes/users');
 var projectsRouter =require('./routes/projects');
 var coursesRouter = require("./routes/courses");
 var routinesRouter = require("./routes/Routines");
+var guideRouter = require("./routes/guides");
 
 var hbs =require('hbs');
 
@@ -95,6 +96,7 @@ app.use('/users', usersRouter);
 app.use('/projects', projectsRouter);
 app.use('/courses', coursesRouter);
 app.use('/routines', routinesRouter);
+app.use('/guides', guideRouter);
 
 hbs.registerHelper("toShortDate", (longDateValue) => {
   return new hbs.SafeString(longDateValue.toLocaleDateString("en-CA"));

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const schemaObj = {
-    name: {type: String, require:true},
+    routineName: {type: String, require:true},
     hingeActivity: {type: String, require:true},
     pushActivity: {type: String, require:true},
     squatActivity: {type: String, require:true},

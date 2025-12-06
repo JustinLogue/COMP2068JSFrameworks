@@ -1,6 +1,6 @@
 <h1>{{title}}</h1>
 {{#if user}}
-    <a href="/routines/add" class="btn btn-primary">Add a new project</a>
+    <a href="/routines/add" class="btn btn-primary">Add a new routine</a>
 {{/if}}
 <h1>Work in progess!</h1>
 <table class="table table-striped table-hover">
@@ -18,15 +18,17 @@
     <tbody>
         {{#each dataset}}
         <tr>
-            <td>{{this.name}}</td>
-            <td>Activity: {{this.hingeActivity}} Sets: {{this.hingeSets}} Reps:{{this.HingeReps}} {{#if this.Weight}} Weight: {{/if}}{{}}</td>
-            <td>{{this.course}}</td>
-            <td>{{this.status}}</td>
+            <td>{{this.routineName}}</td>
+            <td>Activity: {{this.hingeActivity}} Sets: {{this.hingeSets}} Reps:{{this.HingeReps}} Weight: {{this.hingeWeight}}</td>
+            <td>Activity: {{this.pushActivity}} Sets: {{this.pushSets}} Reps:{{this.pushReps}} Weight: {{this.pushWeight}}</td>
+            <td>Activity: {{this.squatActivity}} Sets: {{this.squatSets}} Reps:{{this.squatReps}} Weight: {{this.squatWeight}}</td>
+            <td>Activity: {{this.pullActivity}} Sets: {{this.pullSets}} Reps:{{this.pullReps}} Weight: {{this.pullWeight}}</td>
+            <td>Activity: {{this.cardioActivity}} Time: {{this.cardioMinutes}}</td>
             <td> 
                 {{#if ../user}}
-                <a href="/projects/edit/{{this._id}}" class="btn btn-info">Update</a>
+                <a href="/routines/edit/{{this._id}}" class="btn btn-info">Update</a>
                 &nbsp;
-                <a href="/projects/delete/{{this._id}}" class="btn btn-danger" onclick="confirmDeletion()">Delete</a>
+                <a href="/routines/delete/{{this._id}}" class="btn btn-danger" onclick="confirmDeletion()">Delete</a>
                 {{/if}}
             </td>
             
