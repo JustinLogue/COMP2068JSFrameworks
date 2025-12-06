@@ -10,7 +10,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var projectsRouter =require('./routes/projects');
 var coursesRouter = require("./routes/courses");
-var routinesRouter = require("./routes/Routines");
+var routinesRouter = require("./routes/routines");
 var guideRouter = require("./routes/guides");
 
 var hbs =require('hbs');
